@@ -6,20 +6,29 @@
     <title>Legislat.io</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f6fc;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #0366d6;
         }
         .container {
             text-align: center;
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
         }
         h1 {
-            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
         ul {
             list-style: none;
@@ -30,37 +39,43 @@
         }
         a {
             text-decoration: none;
-            color: #007bff;
+            color: #0366d6;
+            font-size: 1.2rem;
         }
         a:hover {
             text-decoration: underline;
         }
         .accordion {
-            background-color: #eee;
-            color: #444;
+            background-color: #e6f1ff;
+            color: #0366d6;
             cursor: pointer;
             padding: 18px;
             width: 100%;
             border: none;
             text-align: left;
             outline: none;
-            font-size: 15px;
+            font-size: 1.25rem;
             transition: 0.4s;
+            border-radius: 5px;
+            margin-top: 10px;
         }
         .active, .accordion:hover {
-            background-color: #ccc;
+            background-color: #b6dfff;
         }
         .panel {
             padding: 0 18px;
-            display: none;
             background-color: white;
             overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+            margin-top: 10px;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Legislat.io: compendio de recursos para la gestión y consulta de legislación española y extranjera.</h1>
+        <h1>Legislat.io:<br />compendio de recursos para la gestión y consulta <br />de legislación española y extranjera.</h1>
         <button class="accordion">Ley 15/2015, de 2 de julio, de la Jurisdicción Voluntaria</button>
         <div class="panel">
             <ul>
