@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legislat.io</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f6fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #0366d6;
+        }
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            background-color: white;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #0366d6;
+            font-size: 1.2rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .accordion {
+            background-color: #e6f1ff;
+            color: #0366d6;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.25rem;
+            transition: 0.4s;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .active, .accordion:hover {
+            background-color: #b6dfff;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Legislat.io</h1>
+        <h3>compendio de recursos para la gestión y consulta de legislación española y extranjera.</h3>
+        <button class="accordion">TÍTULO PRELIMINAR</button>
+        <div class="panel">
+            <ul>
+                <li><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/01%20-%20T%C3%8DTULO%20PRELIMINAR/Disposiciones%20generales.html">Disposiciones generales</a></li>
+                <!-- Add more pages as needed -->
+            </ul>
+        </div>
+    </div>
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    // Close all panels by default
+    var panels = document.getElementsByClassName("panel");
+    for (i = 0; i < panels.length; i++) {
+        panels[i].style.display = 'none';
+    }
+
+    // Add click event to accordions
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
+</body>
+</html>
