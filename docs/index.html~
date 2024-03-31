@@ -37,19 +37,22 @@
          li {
          margin: 10px 0;
          }
-         li:focus {
-         outline: none;
-         background-color: #b6dfff; /* same as .active, .accordion:hover */
-         color: #0366d6; /* same as body */
-         }
          a {
          text-decoration: none;
          color: #0366d6;
-         font-size: 1.2rem;
+         font-size: 1rem;
          }
          a:hover {
-         text-decoration: underline;
+         text-decoration: none;
          }
+         li a {
+      transition: background-color 0.5s ease, color 0.5s ease; /* add transition */
+   }
+         li a:hover {
+      outline: none;
+      background-color: #e0effc;
+      color: #0366d6; /* same as body */
+   }
          .accordion {
          background-color: #e6f1ff;
          color: #0366d6;
@@ -64,6 +67,12 @@
          border-radius: 5px;
          margin-top: 10px;
          }
+         .l2 {
+         font-size: 1.1rem;
+         }
+         .l3 {
+         font-size: 1.05rem;
+         }
          .active, .accordion:hover {
          background-color: #b6dfff;
          }
@@ -74,6 +83,7 @@
          border-radius: 5px;
          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
          margin-top: 10px;
+         margin-bottom: 20px;
          font-size: 1rem;
          }
       </style>
@@ -90,32 +100,45 @@
          <div class="panel">
             <ul>
             <!-- TÍTULO PRELIMINAR -->
-            <button class="accordion">TÍTULO PRELIMINAR</button>
+            <button class="accordion l2">TÍTULO PRELIMINAR</button>
             <div class="panel">
                <ul>
-                  <li><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/01%20-%20T%C3%8DTULO%20PRELIMINAR/Disposiciones%20generales.html" target="_blank" rel="noopener">Disposiciones generales</a></li>
+                  <li>
+<a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/01%20-%20T%C3%8DTULO%20PRELIMINAR/Disposiciones%20generales.html" target="_blank" rel="noopener">Disposiciones generales
+</a>
+</li>
                   <!-- Add more pages as needed -->
                </ul>
             </div>
             <!-- DE LAS NORMAS COMUNES EN MATERIA DE TRAMITACIÓN DE LOS EXPEDIENTES DE JURISDICCIÓN VOLUNTARIA -->
-            <button class="accordion">DE LAS NORMAS COMUNES EN MATERIA DE TRAMITACIÓN DE LOS EXPEDIENTES DE JURISDICCIÓN VOLUNTARIA</button>
+            <button class="accordion l2">DE LAS NORMAS COMUNES EN MATERIA DE TRAMITACIÓN DE LOS EXPEDIENTES DE JURISDICCIÓN VOLUNTARIA</button>
             <div class="panel">
                <ul>
-                  <li><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/02%20-%20DE%20LAS%20NORMAS%20COMUNES%20EN%20MATERIA%20DE%20TRAMITACI%C3%93N%20DE%20LOS%20EXPEDIENTES%20DE%20JURISDICCI%C3%93N%20VOLUNTARIA/01%20-%20Normas%20de%20Derecho%20internacional%20privado.html" target="_blank" rel="noopener">Normas de Derecho internacional privado</a></li>
-                  <li><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/02%20-%20DE%20LAS%20NORMAS%20COMUNES%20EN%20MATERIA%20DE%20TRAMITACI%C3%93N%20DE%20LOS%20EXPEDIENTES%20DE%20JURISDICCI%C3%93N%20VOLUNTARIA/02%20-%20Normas%20de%20tramitaci%C3%B3n.html" target="_blank" rel="noopener">Normas de tramitación</a></li>
+                  <li>
+<a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/02%20-%20DE%20LAS%20NORMAS%20COMUNES%20EN%20MATERIA%20DE%20TRAMITACI%C3%93N%20DE%20LOS%20EXPEDIENTES%20DE%20JURISDICCI%C3%93N%20VOLUNTARIA/01%20-%20Normas%20de%20Derecho%20internacional%20privado.html" target="_blank" rel="noopener">Normas de Derecho internacional privado
+</a>
+</li>
+                  <li>
+<a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/02%20-%20DE%20LAS%20NORMAS%20COMUNES%20EN%20MATERIA%20DE%20TRAMITACI%C3%93N%20DE%20LOS%20EXPEDIENTES%20DE%20JURISDICCI%C3%93N%20VOLUNTARIA/02%20-%20Normas%20de%20tramitaci%C3%B3n.html" target="_blank" rel="noopener">Normas de tramitación
+</a>
+</li>
                   <!-- Add more pages as needed -->
                </ul>
             </div>
             <!-- 03 - DE LOS EXPEDIENTES DE JURISDICCIÓN VOLUNTARIA EN MATERIA DE PERSONAS -->
-            <button class="accordion">DE LOS EXPEDIENTES DE JURISDICCIÓN VOLUNTARIA EN MATERIA DE PERSONAS</button>
-            <div class="panel">
-               <button class="accordion">De la autorización o aprobación judicial del reconocimiento de la filiación no matrimonial</button>
-               <div class="panel">
-                  <ul>
-                     <li><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/02%20-%20DE%20LAS%20NORMAS%20COMUNES%20EN%20MATERIA%20DE%20TRAMITACI%C3%93N%20DE%20LOS%20EXPEDIENTES%20DE%20JURISDICCI%C3%93N%20VOLUNTARIA/01%20-%20Normas%20de%20Derecho%20internacional%20privado.html" target="_blank" rel="noopener">De la autorización o aprobación judicial del reconocimiento de la filiación no matrimonial</a></li>
-                  </ul>
+            <button class="accordion l2">DE LOS EXPEDIENTES DE JURISDICCIÓN VOLUNTARIA EN MATERIA DE PERSONAS</button>
+            <div class="panel" style="padding-bottom: 20px;">
+                  <button class="accordion l3">De la autorización o aprobación judicial del reconocimiento de la filiación no matrimonial</button>
+               <div class="panel" style="margin-bottom: 0px;">
+               <ul>
+                     <li>
+<a href="https://cpardilla.github.io/legislat.io/Ley%20de%20la%20Jurisdicci%C3%B3n%20Voluntaria/02%20-%20DE%20LAS%20NORMAS%20COMUNES%20EN%20MATERIA%20DE%20TRAMITACI%C3%93N%20DE%20LOS%20EXPEDIENTES%20DE%20JURISDICCI%C3%93N%20VOLUNTARIA/01%20-%20Normas%20de%20Derecho%20internacional%20privado.html" target="_blank" rel="noopener">De la autorización o aprobación judicial del reconocimiento de la filiación no matrimonial
+</a>
+</li>
+                     </ul>
                </div>
             </div>
+            </ul>
             <!-- Ley 15/2015, de 2 de julio, de la Jurisdicción Voluntaria -->
          </div>
          <!-- container -->
