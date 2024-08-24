@@ -1,55 +1,215 @@
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <title>Index of //home/carlos/Apps/legislat.io/docs/</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+    <title>Ley de Enjuiciamiento Civil</title>
     <style>
-        * {
-        font-family: sans-serif;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
         }
     </style>
 </head>
-    <body>
-        <h1>Index of //home/carlos/Apps/legislat.io/docs//Ley de Enjuiciamiento Civil</h1>
-        <hr>
-            <table>
-                <col width="800">
-                <col width="200">
-                <col width="80">
-                <tr>
-                    <th align="left">Filename</th>
-                    <th align="left">Last modified</th>
-                    <th align="left">Size</th>
-                </tr>
-                <tr>
-    <td><p style="display: none">..</p><img style="margin-right: 5px; max-width: 20px" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH2QcTCzcF5VF4fAAABQ9JREFUaIHtWe1rU1cY/517b26S28Ro2ibU1Jik8WXWVudEp04tXYe26sY+9Nv+gTH2dWzCoJ9sZDD2dSD7NgRhLwzmUOpaxhgOYR8cg83QYNHZl9jmpelN83Lvsw9Ja0xukpvcBB30Bw85955znuf3O895Tk4IsIUtbGELWzAAvp3O+8cnRFPfkHn1wUyuXTG4djkGiMmydcZMlhmAWLuitC0DvgvWz72errdtFtHFe+444+GpW+2I0xYB/rHQB11O++U3Tx+yOLfbhcVo7LDkHYrHw1P3Wh2r5QICFyZHOmzSVyOnD0tzSynMLSRwMNhjWliKDdn8w/fi4alIK+O1tAYCY6EBXjR9O3xqUFpOZRFPZRBPZfDvShpHDu2RBBP7JjAWGmhlzJYJCI5e7eV4fnr4jUFbRgUWY/Jm31JMRnJdweCBPhvxbDo4erW3VXFbIiAwEnLkOcycPLZ/h2Ays8fRVMWYJ09T4EwieyXodSg8Te+8NCG1IrZxAeM3eDLTj0cGA7uczu3c3OIqiCqHEQFzC0lsc9iF3R5Xr1m1/oDxG4Zr0LCAgBy5Fgx4XvN5e8TIfAKqqsG+CJUIDxeS8Hjclu5O+6mAHLlmNL6hFfBfuPqp2+V8//irey2z80nk8mrFGDmdee5ZJUIqnYO/1yXEE8k9tt1nKRa+82uzHJoW4D0fes+5w/7ZmRMHLY+ia0hn8prjygUAgKIS1nMKfL3d4nIs8brNP/xXPDz1TzM8mtpCvouTQ7YO85dnTvRbFmJppNKNX3Xk9RxWVrPYv8/XIQjcdd/YlePNcGlYQN+5yaCJF747e2pAiq/lEU9VrrBeJNYykLOEYJ/XyjHuVt+5yWCjPhoSEBy90k2i8MvJ4/2OnMohmkg3Gq8CK8l1MEGEz9fboQjc7cBIyNHIfN0Cdl6akPI8P330UJ9LkiQ2v7LWONsqWE6kIdk6hB53p4cs7Hb/+ISod64+AeM3eLNi/b5/rzfodnfxj6IpzbO+WahEWIrLcHZ3io5ttgE5bf1a7xVc1ynkCxz9wrfL9e6BfbstDxdXodQ468uhdQppgQjIZBW4ureb5JTstftnzLHw1Ey9eXUF+EdDH7pdOz46dmSv9Di6hryigmNs0xhjNbNRS8DGfFbiJ68QXF0OMZFYPbotMPQoHr5zvxa/mmnyjYXesVrN1986e9jKeB6KQiDQJmEigsDzmH2S0JxPRIguJ6v639llg6o+81nwSwAYctksZiNzaTWvXpz76ZOfGxZQOJfZ3VoCAeDi+ZOIzGuTrCegp7MDf97/u14IcKB9kZuXH2j1CdUmPbx5+XfUzdAkGSlmlQiMsQzLwB2Z+lg7jXVg+DKnGlDQipPMsAAjJAylr4gXmgG18vLaMFqQASNb6CXIgNEiNooXu4VeBgHGitho9BrfA1XAUBDNimawiAtz12MRU5ELAVCLn7qgR8AGYa6szYDWFHFWfmoCIOIZebWsXRW1BHBlxjSe0cDFtAIbc5VM0gTAVEK8XMiG6RZQTr6aGcpAYfsRU/PrAgo3Y1ZiWoQr3mkVMdNhJQKa5r8pnlSlNKv17DloZYB02OZKqESwSyJAVOgsXomJCn2SWdh8T0QFKz5vFDHj+NJtU8/qCgC006cp4u5vf1RxoRsiJ1jyABQ0UQN6fnfWOoXK26VpLvdNJZ/lC1He1n0KNfrfVTXC9cjXE6ElSDehVkAP+Q2Ui9jC/xr/AdMhPW/WKyVfAAAAAElFTkSuQmCC" /><a href="..">..</a></td>
-    <td>04-Apr-2024 20:51</td>
-    <td>-</td>
-</tr><tr>
-    <td><p style="display: none">01 - DE LAS DISPOSICIONES GENERALES RELATIVAS A LOS JUICIOS CIVILES</p><img style="margin-right: 5px; max-width: 20px" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH2wQECAEI1xyfEAAABF1JREFUaIHtmM1vVFUYh59zO3NnWiCSRhOQVoMf0cS4MBgXLR+GRBaaLmBRBVO2Ji5152oWblyZ+BeQmChBFpi6MYGFGxdSE+QrJQWDKYXBMjC0dDpzz8fr4kzbKfd2mCtTexP7JJOTObnzzvu77+8959wLm2zy/0YlTY6NjW2x1oZpg9VqNTlz5kz16dPqnJiAj8eOfmOM/kQp5dIGE0EpxYJxMnL65Olfu5Nie2ICjh4brbx78O3+rVv6UgcTgXJ5lomJqw9x0ZsnT/443ZUs25CLzSh4Z88w/f3Pcv/+bOqALw7OUa9HW69cvnF2ZGTkrfHx8Vo3El2LuAAgDEOqD+9z4eJ5RDp3UqFQZHBgNwf27+upVh8NzsyUvy+VSodLpVJqO3ZKzEIfHRutfP7Zp/1TU1eZm59LH1AFvLT7VYqFAuM//bx486+ZALDdSDZQqh7k1JfffXvq66W5hAoIiKCNRuvoX/3R5LVL7Hp+kA9Hj/Q6Jz7mYxhjAEEbgzUarQ3GGIzVfjR+jLQfrTHMLzzqO//bZAloJ8BjtUVHOlXiIkKj+ZvJa5NMXb9OsVhMyt+jfOMjgiCIOETEzyE4x9IFOHHkegJEXL41xJoCtDFEKQRUKvPM3L5HIUy9fXRMI4oIlOppnYsJEO8gokijdWcCGg3N7TsVjo8dYdeunQSB/w/nHM5Z78pmGUSWRvClEUQU4PvcWtecV81rV8pXrT7ixIkfVt2h5B5AaDTqRFFnPVAuVxka2sPw0D5EBOcs3vugFDjn7eGcw4kgq0bnx+Y1AE6a353FNeOJgzAsYuzq9WBtC2nDwkJ9+Y4lIUCtFtGTD/ng/UMsLi4wdX2yI9HdIlHAxO8XuHjpBn19RXK5nqRLAAhUwODAAAcPDrNzxwAX/pigjd51IakHcleuTnJ87DDbtm15YgClFK+/9ga3bt1E68a6JNmOmIAwzPUeeu8Aw0P7yefbryjes4q5+Sp3yjNt7bZexCuACvbt3cvfs3d48KCyxs/U8srinO14tVoP4j0goorFIpXKPRqN+gaklI5goxN4WhJXIb+7y4Z4Oi1r7gNLG1rWSbSQuK6cfruOUvFH+MQKaG1wzmXOQkrF73eigKWzetYsFAQdVsAY03IuzxIdVUCw1saOslkg6LQHjLHLzwWZotMesNbgHzCypSBFD1icI3OrUNKb0MR9wLl1e43zVARBCguJs5mrgFqpQB7QEBewDcA626xWxgSs9MAOoAzoVgF54DkAZ5cesv/bBJ9Ey068A6gDs60CeoHtIqKcCFlchVrOQtuBZ4Bqq4AQKALNjSyD+8BKPiFQAILHe8C/bnKOIAhWNXHSSXADWT4mtApoAItAdPnKtcLLr7xATmWoBEoxdeNP8mHO4f1fB0yrgBrwYHp65quz53754uw51n4htEGoIJDZu/dOAdXmxz7uiz78SrQdsiegSR2f/F0SBIBvkF6yKyDCuyWbx4VNNtkkHf8Al2k6f7TD2+wAAAAASUVORK5CYII=" /><a href="01 - DE LAS DISPOSICIONES GENERALES RELATIVAS A LOS JUICIOS CIVILES">01 - DE LAS DISPOSICIONES GENERALES RELATIVAS A LOS JUICIOS CIVILES</a></td>
-    <td>04-Apr-2024 20:53</td>
-    <td>-</td>
-</tr><tr>
-    <td><p style="display: none">02 - DE LOS PROCESOS DECLARATIVOS</p><img style="margin-right: 5px; max-width: 20px" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH2wQECAEI1xyfEAAABF1JREFUaIHtmM1vVFUYh59zO3NnWiCSRhOQVoMf0cS4MBgXLR+GRBaaLmBRBVO2Ji5152oWblyZ+BeQmChBFpi6MYGFGxdSE+QrJQWDKYXBMjC0dDpzz8fr4kzbKfd2mCtTexP7JJOTObnzzvu77+8959wLm2zy/0YlTY6NjW2x1oZpg9VqNTlz5kz16dPqnJiAj8eOfmOM/kQp5dIGE0EpxYJxMnL65Olfu5Nie2ICjh4brbx78O3+rVv6UgcTgXJ5lomJqw9x0ZsnT/443ZUs25CLzSh4Z88w/f3Pcv/+bOqALw7OUa9HW69cvnF2ZGTkrfHx8Vo3El2LuAAgDEOqD+9z4eJ5RDp3UqFQZHBgNwf27+upVh8NzsyUvy+VSodLpVJqO3ZKzEIfHRutfP7Zp/1TU1eZm59LH1AFvLT7VYqFAuM//bx486+ZALDdSDZQqh7k1JfffXvq66W5hAoIiKCNRuvoX/3R5LVL7Hp+kA9Hj/Q6Jz7mYxhjAEEbgzUarQ3GGIzVfjR+jLQfrTHMLzzqO//bZAloJ8BjtUVHOlXiIkKj+ZvJa5NMXb9OsVhMyt+jfOMjgiCIOETEzyE4x9IFOHHkegJEXL41xJoCtDFEKQRUKvPM3L5HIUy9fXRMI4oIlOppnYsJEO8gokijdWcCGg3N7TsVjo8dYdeunQSB/w/nHM5Z78pmGUSWRvClEUQU4PvcWtecV81rV8pXrT7ixIkfVt2h5B5AaDTqRFFnPVAuVxka2sPw0D5EBOcs3vugFDjn7eGcw4kgq0bnx+Y1AE6a353FNeOJgzAsYuzq9WBtC2nDwkJ9+Y4lIUCtFtGTD/ng/UMsLi4wdX2yI9HdIlHAxO8XuHjpBn19RXK5nqRLAAhUwODAAAcPDrNzxwAX/pigjd51IakHcleuTnJ87DDbtm15YgClFK+/9ga3bt1E68a6JNmOmIAwzPUeeu8Aw0P7yefbryjes4q5+Sp3yjNt7bZexCuACvbt3cvfs3d48KCyxs/U8srinO14tVoP4j0goorFIpXKPRqN+gaklI5goxN4WhJXIb+7y4Z4Oi1r7gNLG1rWSbSQuK6cfruOUvFH+MQKaG1wzmXOQkrF73eigKWzetYsFAQdVsAY03IuzxIdVUCw1saOslkg6LQHjLHLzwWZotMesNbgHzCypSBFD1icI3OrUNKb0MR9wLl1e43zVARBCguJs5mrgFqpQB7QEBewDcA626xWxgSs9MAOoAzoVgF54DkAZ5cesv/bBJ9Ey068A6gDs60CeoHtIqKcCFlchVrOQtuBZ4Bqq4AQKALNjSyD+8BKPiFQAILHe8C/bnKOIAhWNXHSSXADWT4mtApoAItAdPnKtcLLr7xATmWoBEoxdeNP8mHO4f1fB0yrgBrwYHp65quz53754uw51n4htEGoIJDZu/dOAdXmxz7uiz78SrQdsiegSR2f/F0SBIBvkF6yKyDCuyWbx4VNNtkkHf8Al2k6f7TD2+wAAAAASUVORK5CYII=" /><a href="02 - DE LOS PROCESOS DECLARATIVOS">02 - DE LOS PROCESOS DECLARATIVOS</a></td>
-    <td>07-Apr-2024 20:55</td>
-    <td>-</td>
-</tr><tr>
-    <td><p style="display: none">03 - DE LA EJECUCIÓN FORZOSA Y DE LAS MEDIDAS CAUTELARES</p><img style="margin-right: 5px; max-width: 20px" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH2wQECAEI1xyfEAAABF1JREFUaIHtmM1vVFUYh59zO3NnWiCSRhOQVoMf0cS4MBgXLR+GRBaaLmBRBVO2Ji5152oWblyZ+BeQmChBFpi6MYGFGxdSE+QrJQWDKYXBMjC0dDpzz8fr4kzbKfd2mCtTexP7JJOTObnzzvu77+8959wLm2zy/0YlTY6NjW2x1oZpg9VqNTlz5kz16dPqnJiAj8eOfmOM/kQp5dIGE0EpxYJxMnL65Olfu5Nie2ICjh4brbx78O3+rVv6UgcTgXJ5lomJqw9x0ZsnT/443ZUs25CLzSh4Z88w/f3Pcv/+bOqALw7OUa9HW69cvnF2ZGTkrfHx8Vo3El2LuAAgDEOqD+9z4eJ5RDp3UqFQZHBgNwf27+upVh8NzsyUvy+VSodLpVJqO3ZKzEIfHRutfP7Zp/1TU1eZm59LH1AFvLT7VYqFAuM//bx486+ZALDdSDZQqh7k1JfffXvq66W5hAoIiKCNRuvoX/3R5LVL7Hp+kA9Hj/Q6Jz7mYxhjAEEbgzUarQ3GGIzVfjR+jLQfrTHMLzzqO//bZAloJ8BjtUVHOlXiIkKj+ZvJa5NMXb9OsVhMyt+jfOMjgiCIOETEzyE4x9IFOHHkegJEXL41xJoCtDFEKQRUKvPM3L5HIUy9fXRMI4oIlOppnYsJEO8gokijdWcCGg3N7TsVjo8dYdeunQSB/w/nHM5Z78pmGUSWRvClEUQU4PvcWtecV81rV8pXrT7ixIkfVt2h5B5AaDTqRFFnPVAuVxka2sPw0D5EBOcs3vugFDjn7eGcw4kgq0bnx+Y1AE6a353FNeOJgzAsYuzq9WBtC2nDwkJ9+Y4lIUCtFtGTD/ng/UMsLi4wdX2yI9HdIlHAxO8XuHjpBn19RXK5nqRLAAhUwODAAAcPDrNzxwAX/pigjd51IakHcleuTnJ87DDbtm15YgClFK+/9ga3bt1E68a6JNmOmIAwzPUeeu8Aw0P7yefbryjes4q5+Sp3yjNt7bZexCuACvbt3cvfs3d48KCyxs/U8srinO14tVoP4j0goorFIpXKPRqN+gaklI5goxN4WhJXIb+7y4Z4Oi1r7gNLG1rWSbSQuK6cfruOUvFH+MQKaG1wzmXOQkrF73eigKWzetYsFAQdVsAY03IuzxIdVUCw1saOslkg6LQHjLHLzwWZotMesNbgHzCypSBFD1icI3OrUNKb0MR9wLl1e43zVARBCguJs5mrgFqpQB7QEBewDcA626xWxgSs9MAOoAzoVgF54DkAZ5cesv/bBJ9Ey068A6gDs60CeoHtIqKcCFlchVrOQtuBZ4Bqq4AQKALNjSyD+8BKPiFQAILHe8C/bnKOIAhWNXHSSXADWT4mtApoAItAdPnKtcLLr7xATmWoBEoxdeNP8mHO4f1fB0yrgBrwYHp65quz53754uw51n4htEGoIJDZu/dOAdXmxz7uiz78SrQdsiegSR2f/F0SBIBvkF6yKyDCuyWbx4VNNtkkHf8Al2k6f7TD2+wAAAAASUVORK5CYII=" /><a href="03 - DE LA EJECUCIÓN FORZOSA Y DE LAS MEDIDAS CAUTELARES">03 - DE LA EJECUCIÓN FORZOSA Y DE LAS MEDIDAS CAUTELARES</a></td>
-    <td>01-Apr-2024 18:05</td>
-    <td>-</td>
-</tr><tr>
-    <td><p style="display: none">04 - DE LOS PROCESOS ESPECIALES</p><img style="margin-right: 5px; max-width: 20px" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH2wQECAEI1xyfEAAABF1JREFUaIHtmM1vVFUYh59zO3NnWiCSRhOQVoMf0cS4MBgXLR+GRBaaLmBRBVO2Ji5152oWblyZ+BeQmChBFpi6MYGFGxdSE+QrJQWDKYXBMjC0dDpzz8fr4kzbKfd2mCtTexP7JJOTObnzzvu77+8959wLm2zy/0YlTY6NjW2x1oZpg9VqNTlz5kz16dPqnJiAj8eOfmOM/kQp5dIGE0EpxYJxMnL65Olfu5Nie2ICjh4brbx78O3+rVv6UgcTgXJ5lomJqw9x0ZsnT/443ZUs25CLzSh4Z88w/f3Pcv/+bOqALw7OUa9HW69cvnF2ZGTkrfHx8Vo3El2LuAAgDEOqD+9z4eJ5RDp3UqFQZHBgNwf27+upVh8NzsyUvy+VSodLpVJqO3ZKzEIfHRutfP7Zp/1TU1eZm59LH1AFvLT7VYqFAuM//bx486+ZALDdSDZQqh7k1JfffXvq66W5hAoIiKCNRuvoX/3R5LVL7Hp+kA9Hj/Q6Jz7mYxhjAEEbgzUarQ3GGIzVfjR+jLQfrTHMLzzqO//bZAloJ8BjtUVHOlXiIkKj+ZvJa5NMXb9OsVhMyt+jfOMjgiCIOETEzyE4x9IFOHHkegJEXL41xJoCtDFEKQRUKvPM3L5HIUy9fXRMI4oIlOppnYsJEO8gokijdWcCGg3N7TsVjo8dYdeunQSB/w/nHM5Z78pmGUSWRvClEUQU4PvcWtecV81rV8pXrT7ixIkfVt2h5B5AaDTqRFFnPVAuVxka2sPw0D5EBOcs3vugFDjn7eGcw4kgq0bnx+Y1AE6a353FNeOJgzAsYuzq9WBtC2nDwkJ9+Y4lIUCtFtGTD/ng/UMsLi4wdX2yI9HdIlHAxO8XuHjpBn19RXK5nqRLAAhUwODAAAcPDrNzxwAX/pigjd51IakHcleuTnJ87DDbtm15YgClFK+/9ga3bt1E68a6JNmOmIAwzPUeeu8Aw0P7yefbryjes4q5+Sp3yjNt7bZexCuACvbt3cvfs3d48KCyxs/U8srinO14tVoP4j0goorFIpXKPRqN+gaklI5goxN4WhJXIb+7y4Z4Oi1r7gNLG1rWSbSQuK6cfruOUvFH+MQKaG1wzmXOQkrF73eigKWzetYsFAQdVsAY03IuzxIdVUCw1saOslkg6LQHjLHLzwWZotMesNbgHzCypSBFD1icI3OrUNKb0MR9wLl1e43zVARBCguJs5mrgFqpQB7QEBewDcA626xWxgSs9MAOoAzoVgF54DkAZ5cesv/bBJ9Ey068A6gDs60CeoHtIqKcCFlchVrOQtuBZ4Bqq4AQKALNjSyD+8BKPiFQAILHe8C/bnKOIAhWNXHSSXADWT4mtApoAItAdPnKtcLLr7xATmWoBEoxdeNP8mHO4f1fB0yrgBrwYHp65quz53754uw51n4htEGoIJDZu/dOAdXmxz7uiz78SrQdsiegSR2f/F0SBIBvkF6yKyDCuyWbx4VNNtkkHf8Al2k6f7TD2+wAAAAASUVORK5CYII=" /><a href="04 - DE LOS PROCESOS ESPECIALES">04 - DE LOS PROCESOS ESPECIALES</a></td>
-    <td>01-Apr-2024 18:05</td>
-    <td>-</td>
-</tr>
-                <tr>
-    <td><p style="display: none">LECDB.html</p><img style="margin-right: 5px; max-width: 20px" src="data:image/png;base64, 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" /><a href="LECDB.html">LECDB.html</a></td>
-    <td>31-Mar-2024 14:48</td>
-    <td>4563 kB</td>
-</tr>
-            </table>
-        <hr>
-        <span>
-            <span style="font-size: 12px">generated by </span><a style="font-size: 12px" href="https://thinkpads.org/projects/apindex">apindex 2.2</a>
+<body>
+    <h1>Ley de Enjuiciamiento Civil</h1>
 
-        </span>
-    </body>
+    <button class="accordion">00 - DE LAS NORMAS PROCESALES Y SU APLICACIÓN</button>
+    <div class="panel">
+        <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/00%20-%20DE%20LAS%20NORMAS%20PROCESALES%20Y%20SU%20APLICACIÓN/">Ver contenido</a></p>
+    </div>
+
+    <button class="accordion">01 - DE LAS DISPOSICIONES GENERALES RELATIVAS A LOS JUICIOS CIVILES</button>
+    <div class="panel">
+        <button class="accordion">01 - De la comparecencia y actuación en juicio</button>
+        <div class="panel">
+            <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/01%20-%20De%20la%20comparecencia%20y%20actuación%20en%20juicio/">Ver contenido</a></p>
+        </div>
+
+        <button class="accordion">02 - De la jurisdicción y de la competencia</button>
+        <div class="panel">
+            <button class="accordion">02 - De las reglas para determinar la competencia</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/02%20-%20De%20la%20jurisdicción%20y%20de%20la%20competencia/02%20-%20De%20las%20reglas%20para%20determinar%20la%20competencia/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">03 - De la declinatoria</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/02%20-%20De%20la%20jurisdicción%20y%20de%20la%20competencia/03%20-%20De%20la%20declinatoria/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">04 - De los recursos en materia de jurisdicción y competencia</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/02%20-%20De%20la%20jurisdicción%20y%20de%20la%20competencia/04%20-%20De%20los%20recursos%20en%20materia%20de%20jurisdicción%20y%20competencia/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">05 - Del reparto de los asuntos</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/02%20-%20De%20la%20jurisdicción%20y%20de%20la%20competencia/05%20-%20Del%20reparto%20de%20los%20asuntos/">Ver contenido</a></p>
+            </div>
+        </div>
+
+        <button class="accordion">03 - De la acumulación de acciones y de procesos</button>
+        <div class="panel">
+            <button class="accordion">01 - De la acumulación de acciones</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/03%20-%20De%20la%20acumulación%20de%20acciones%20y%20de%20procesos/01%20-%20De%20la%20acumulación%20de%20acciones/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">02 - De la acumulación de procesos</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/03%20-%20De%20la%20acumulación%20de%20acciones%20y%20de%20procesos/02%20-%20De%20la%20acumulación%20de%20procesos/">Ver contenido</a></p>
+            </div>
+        </div>
+
+        <button class="accordion">05 - De las actuaciones judiciales</button>
+        <div class="panel">
+            <button class="accordion">02 - Del tiempo de las actuaciones judiciales</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/02%20-%20Del%20tiempo%20de%20las%20actuaciones%20judiciales/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">03 - De la inmediación, la publicidad y la lengua oficial</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/03%20-%20De%20la%20inmediación,%20la%20publicidad%20y%20la%20lengua%20oficial/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">04 - De la fe pública judicial y de la documentación de las actuaciones</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/04%20-%20De%20la%20fe%20pública%20judicial%20y%20de%20la%20documentación%20de%20las%20actuaciones/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">05 - De los actos de comunicación judicial</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/05%20-%20De%20los%20actos%20de%20comunicación%20judicial/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">06 - Del auxilio judicial</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/06%20-%20Del%20auxilio%20judicial/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">07 - De la sustanciación, vista y decisión de los asuntos</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/07%20-%20De%20la%20sustanciación,%20vista%20y%20decisión%20de%20los%20asuntos/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">08 - De las resoluciones procesales</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/01%20-%20DE%20LAS%20DISPOSICIONES%20GENERALES%20RELATIVAS%20A%20LOS%20JUICIOS%20CIVILES/05%20-%20De%20las%20actuaciones%20judiciales/08%20-%20De%20las%20resoluciones%20procesales/">Ver contenido</a></p>
+            </div>
+        </div>
+    </div>
+
+<button class="accordion">02 - DE LOS PROCESOS DECLARATIVOS</button>
+    <div class="panel">
+        <button class="accordion">02 - Del juicio ordinario</button>
+        <div class="panel">
+            <button class="accordion">01 - De las alegaciones iniciales</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/02%20-%20Del%20juicio%20ordinario/01%20-%20De%20las%20alegaciones%20iniciales/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">02 - De la audiencia previa al juicio</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/02%20-%20Del%20juicio%20ordinario/02%20-%20De%20la%20audiencia%20previa%20al%20juicio/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">03 - Del juicio</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/02%20-%20Del%20juicio%20ordinario/03%20-%20Del%20juicio/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">04 - De la sentencia</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/02%20-%20Del%20juicio%20ordinario/04%20-%20De%20la%20sentencia/">Ver contenido</a></p>
+            </div>
+        </div>
+
+        <button class="accordion">03 - Del juicio verbal</button>
+        <div class="panel">
+            <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/03%20-%20Del%20juicio%20verbal/">Ver contenido</a></p>
+        </div>
+
+        <button class="accordion">04 - De los recursos</button>
+        <div class="panel">
+            <button class="accordion">01 - De los recursos - disposiciones generales</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/01%20-%20De%20los%20recursos%20-%20disposiciones%20generales/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">02 - De los recursos de reposición y revisión</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/02%20-%20De%20los%20recursos%20de%20reposición%20y%20revisión/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">03 - Del recurso de apelación y de la segunda instancia</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/03%20-%20Del%20recurso%20de%20apelación%20y%20de%20la%20segunda%20instancia/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">04 - Del recurso de casación</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/04%20-%20Del%20recurso%20de%20casación/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">05 - Del recurso de queja</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/05%20-%20Del%20recurso%20de%20queja/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">06 - De la rebeldía y de la rescisión de sentencias firmes y nueva audiencia al demandado rebelde</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/06%20-%20De%20la%20rebeldía%20y%20de%20la%20rescisión%20de%20sentencias%20firmes%20y%20nueva%20audiencia%20al%20demandado%20rebelde/">Ver contenido</a></p>
+            </div>
+
+            <button class="accordion">07 - De la revisión de sentencias firmes</button>
+            <div class="panel">
+                <p><a href="https://cpardilla.github.io/legislat.io/Ley%20de%20Enjuiciamiento%20Civil/02%20-%20DE%20LOS%20PROCESOS%20DECLARATIVOS/04%20-%20De%20los%20recursos/07%20-%20De%20la%20revisión%20de%20sentencias%20firmes/">Ver contenido</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+</body>
 </html>
