@@ -1,16 +1,15 @@
 name: directory-listing
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   pages-directory-listing:
     runs-on: ubuntu-latest
     name: Directory Listings Index
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          ref: $BASE_BRANCH    #checkout different branch
-
       - name: Generate Directory Listings
         uses: jayanta525/github-pages-directory-listing@v4.0.0
         with:
