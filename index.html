@@ -718,5 +718,15 @@
     </ul>
     </li>
     </ul>
+    <script>
+      const directories = document.querySelectorAll('.directory');
+      directories.forEach(directory => {
+        const files = directory.querySelector('ul');
+        files.style.display = 'none'; // Inicialmente ocultamos los archivos
+        directory.addEventListener('click', () => {
+          files.style.display = files.style.display === 'none' ? 'block' : 'none';
+        });
+      });
+    </script>
   </body>
 </html>
