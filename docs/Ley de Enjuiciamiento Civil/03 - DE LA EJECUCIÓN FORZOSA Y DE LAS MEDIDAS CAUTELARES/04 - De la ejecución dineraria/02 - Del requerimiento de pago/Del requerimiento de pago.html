@@ -16,7 +16,7 @@
   height: 100vh;
 }
 </style>
-<style>.mm-toolbar:hover {--un-border-opacity:1;border-color:rgb(156 163 175 / var(--un-border-opacity));
+<style>.mm-toolbar:hover {--un-border-opacity:1;border-color:rgb(161 161 170 / var(--un-border-opacity));
   }
   .mm-toolbar svg {display:block;
   }
@@ -28,21 +28,30 @@
     }
   .mm-toolbar-brand:not(:first-child), .mm-toolbar-item:not(:first-child) {margin-left:0.25rem;
     }
-  .mm-toolbar-brand > *, .mm-toolbar-item > * {
-      min-width: 20px;
-      height: 20px;
-      line-height: 20px;cursor:pointer;text-align:center;font-size:0.75rem;line-height:1rem;--un-text-opacity:1;color:rgb(156 163 175 / var(--un-text-opacity));
+  .mm-toolbar-brand > *, .mm-toolbar-item > * {min-width:1rem;cursor:pointer;text-align:center;font-size:0.75rem;line-height:1rem;--un-text-opacity:1;color:rgb(161 161 170 / var(--un-text-opacity));
     }
-  .mm-toolbar-brand.active > *, .mm-toolbar-brand:hover > *, .mm-toolbar-item.active > *, .mm-toolbar-item:hover > * {--un-text-opacity:1;color:rgb(31 41 55 / var(--un-text-opacity));
+  .mm-toolbar-brand.active > *, .mm-toolbar-brand:hover > *, .mm-toolbar-item.active > *, .mm-toolbar-item:hover > * {--un-text-opacity:1;color:rgb(39 39 42 / var(--un-text-opacity));
       }
   .mm-toolbar-brand.active,
     .mm-toolbar-brand:hover,
     .mm-toolbar-item.active,
-    .mm-toolbar-item:hover {border-radius:0.25rem;--un-bg-opacity:1;background-color:rgb(229 231 235 / var(--un-bg-opacity));
+    .mm-toolbar-item:hover {border-radius:0.25rem;--un-bg-opacity:1;background-color:rgb(228 228 231 / var(--un-bg-opacity));
 }
-  .mm-toolbar-brand.active, .mm-toolbar-item.active {--un-bg-opacity:1;background-color:rgb(209 213 219 / var(--un-bg-opacity));
+  .mm-toolbar-brand.active, .mm-toolbar-item.active {--un-bg-opacity:1;background-color:rgb(212 212 216 / var(--un-bg-opacity));
     }
-  .mm-toolbar {display:flex;-webkit-user-select:none;-moz-user-select:none;user-select:none;align-items:center;border-width:1px;--un-border-opacity:1;border-color:rgb(209 213 219 / var(--un-border-opacity));border-radius:0.25rem;border-style:solid;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity));padding:0.25rem;line-height:1;
+  .mm-toolbar {display:flex;-webkit-user-select:none;-moz-user-select:none;user-select:none;align-items:center;border-width:1px;--un-border-opacity:1;border-color:rgb(212 212 216 / var(--un-border-opacity));border-radius:0.25rem;border-style:solid;--un-bg-opacity:1;background-color:rgb(255 255 255 / var(--un-bg-opacity));padding:0.25rem;line-height:1;
+}
+
+.markmap-dark .mm-toolbar:hover {--un-border-opacity:1;border-color:rgb(113 113 122 / var(--un-border-opacity));
+  }
+
+.markmap-dark .mm-toolbar > *:hover > * {--un-text-opacity:1;color:rgb(228 228 231 / var(--un-text-opacity));
+    }
+
+.markmap-dark .mm-toolbar > *:hover {--un-bg-opacity:1;background-color:rgb(82 82 91 / var(--un-bg-opacity));
+}
+
+.markmap-dark .mm-toolbar {--un-border-opacity:1;border-color:rgb(82 82 91 / var(--un-border-opacity));--un-bg-opacity:1;background-color:rgb(39 39 42 / var(--un-bg-opacity));--un-text-opacity:1;color:rgb(161 161 170 / var(--un-text-opacity));
 }
 </style>
 </head>
@@ -415,6 +424,7 @@
     duration: 500,
     embedGlobalCSS: true,
     fitRatio: 0.95,
+    maxInitialScale: 2,
     maxWidth: 0,
     nodeMinHeight: 16,
     paddingX: 8,
@@ -450,7 +460,17 @@
         return color2(node);
       };
     }
-    const numberKeys = ["duration", "maxWidth", "initialExpandLevel"];
+    const numberKeys = [
+      "duration",
+      "fitRatio",
+      "initialExpandLevel",
+      "maxInitialScale",
+      "maxWidth",
+      "nodeMinHeight",
+      "paddingX",
+      "spacingHorizontal",
+      "spacingVertical"
+    ];
     numberKeys.forEach((key) => {
       const value = options[key];
       if (typeof value === "number")
@@ -1206,7 +1226,7 @@
     };
   };
   const containerCSS = "/* used for pre-rendering to get the size of each node */\n.markmap-container {\n  position: absolute;\n  width: 0;\n  height: 0;\n  top: -100px;\n  left: -100px;\n  overflow: hidden;\n}\n.markmap-container > .markmap-foreign {\n    display: inline-block;\n  }\n/* first-child for line wrapping, last-child for max-width detection */\n.markmap-container > .markmap-foreign > div:last-child,\n        \n        .markmap-container > .markmap-foreign > div:last-child :not(pre) {\n          white-space: nowrap;\n        }\n.markmap-container > .markmap-foreign > div:last-child code {\n          white-space: inherit;\n        }\n";
-  const css = ".markmap {\n  --markmap-max-width: none;\n  --markmap-a-color: #0097e6;\n  --markmap-a-hover-color: #00a8ff;\n  --markmap-code-bg: #f0f0f0;\n  --markmap-code-color: #555;\n  --markmap-highlight-bg: #ffeaa7;\n  --markmap-table-border: 1px solid currentColor;\n  --markmap-font: 300 16px/20px sans-serif;\n\n  font: var(--markmap-font);\n}\n\n  .markmap-link {\n    fill: none;\n  }\n\n  .markmap-node > circle {\n      cursor: pointer;\n    }\n\n  .markmap-foreign {\n    display: inline-block;\n  }\n\n  .markmap-foreign a {\n      color: var(--markmap-a-color);\n    }\n\n  .markmap-foreign a:hover {\n        color: var(--markmap-a-hover-color);\n      }\n\n  .markmap-foreign code {\n      padding: 0.25em;\n      font-size: calc(1em - 2px);\n      color: var(--markmap-code-color);\n      background-color: var(--markmap-code-bg);\n      border-radius: 2px;\n    }\n\n  .markmap-foreign pre {\n      margin: 0;\n    }\n\n  .markmap-foreign pre > code {\n        display: block;\n      }\n\n  .markmap-foreign del {\n      text-decoration: line-through;\n    }\n\n  .markmap-foreign em {\n      font-style: italic;\n    }\n\n  .markmap-foreign strong {\n      font-weight: bold;\n    }\n\n  .markmap-foreign mark {\n      background: var(--markmap-highlight-bg);\n    }\n\n  .markmap-foreign table,\n    .markmap-foreign th,\n    .markmap-foreign td {\n      border-collapse: collapse;\n      border: var(--markmap-table-border);\n    }\n\n  .markmap-foreign img {\n      display: inline-block;\n    }\n\n  .markmap-foreign-testing-max {\n    max-width: var(--markmap-max-width);\n  }\n\n  .markmap-foreign-testing-max img {\n      max-width: var(--markmap-max-width);\n      max-height: none;\n    }\n";
+  const css = ".markmap {\n  --markmap-max-width: none;\n  --markmap-a-color: #0097e6;\n  --markmap-a-hover-color: #00a8ff;\n  --markmap-code-bg: #f0f0f0;\n  --markmap-code-color: #555;\n  --markmap-highlight-bg: #ffeaa7;\n  --markmap-table-border: 1px solid currentColor;\n  --markmap-font: 300 16px/20px sans-serif;\n  --markmap-circle-open-bg: #fff;\n  --markmap-text-color: #333;\n\n  font: var(--markmap-font);\n  color: var(--markmap-text-color);\n}\n\n  .markmap-link {\n    fill: none;\n  }\n\n  .markmap-node > circle {\n      cursor: pointer;\n    }\n\n  .markmap-foreign {\n    display: inline-block;\n  }\n\n  .markmap-foreign p {\n      margin: 0;\n    }\n\n  .markmap-foreign a {\n      color: var(--markmap-a-color);\n    }\n\n  .markmap-foreign a:hover {\n        color: var(--markmap-a-hover-color);\n      }\n\n  .markmap-foreign code {\n      padding: 0.25em;\n      font-size: calc(1em - 2px);\n      color: var(--markmap-code-color);\n      background-color: var(--markmap-code-bg);\n      border-radius: 2px;\n    }\n\n  .markmap-foreign pre {\n      margin: 0;\n    }\n\n  .markmap-foreign pre > code {\n        display: block;\n      }\n\n  .markmap-foreign del {\n      text-decoration: line-through;\n    }\n\n  .markmap-foreign em {\n      font-style: italic;\n    }\n\n  .markmap-foreign strong {\n      font-weight: bold;\n    }\n\n  .markmap-foreign mark {\n      background: var(--markmap-highlight-bg);\n    }\n\n  .markmap-foreign table,\n    .markmap-foreign th,\n    .markmap-foreign td {\n      border-collapse: collapse;\n      border: var(--markmap-table-border);\n    }\n\n  .markmap-foreign img {\n      display: inline-block;\n    }\n\n  .markmap-foreign svg {\n      fill: currentColor;\n    }\n\n  .markmap-foreign-testing-max {\n    max-width: var(--markmap-max-width);\n  }\n\n  .markmap-foreign-testing-max img {\n      max-width: var(--markmap-max-width);\n      max-height: none;\n    }\n\n.markmap-dark .markmap {\n  --markmap-code-bg: #1a1b26;\n  --markmap-code-color: #ddd;\n  --markmap-circle-open-bg: #444;\n  --markmap-text-color: #eee;\n}\n";
   const globalCSS = css;
   function linkWidth(nodeData) {
     const data = nodeData.data;
@@ -1514,7 +1534,7 @@
         "fill",
         (d) => {
           var _a;
-          return ((_a = d.data.payload) == null ? void 0 : _a.fold) && d.data.children ? color(d.data) : "#fff";
+          return ((_a = d.data.payload) == null ? void 0 : _a.fold) && d.data.children ? color(d.data) : "var(--markmap-circle-open-bg)";
         }
       );
       const foreignObject = nodeMerge.selectAll(
@@ -1583,7 +1603,7 @@
     /**
      * Fit the content to the viewport.
      */
-    async fit() {
+    async fit(maxScale = this.options.maxInitialScale) {
       const svgNode = this.svg.node();
       const { width: offsetWidth, height: offsetHeight } = svgNode.getBoundingClientRect();
       const { fitRatio } = this.options;
@@ -1593,7 +1613,7 @@
       const scale = Math.min(
         offsetWidth / naturalWidth * fitRatio,
         offsetHeight / naturalHeight * fitRatio,
-        2
+        maxScale
       );
       const initialZoom = d32.zoomIdentity.translate(
         (offsetWidth - naturalWidth * scale) / 2 - minY * scale,
@@ -1677,7 +1697,9 @@
       const mm = new Markmap(svg, opts);
       if (data) {
         mm.setData(data);
-        mm.fit();
+        requestAnimationFrame(() => {
+          mm.fit();
+        });
       }
       return mm;
     }
@@ -1986,6 +2008,6 @@
   exports.Toolbar = Toolbar;
   Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 })(this.markmap = this.markmap || {});
-</script><script>(()=>{setTimeout(()=>{const{markmap:H,mm:ae}=window,W=new H.Toolbar;W.attach(ae);const we=W.render();we.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(we)})})()</script><script>((o,T,c,r)=>{const g=o();window.mm=g.Markmap.create("svg#mindmap",(T||g.deriveOptions)(r),c)})(()=>window.markmap,null,{"content":"REQUERIMIENTO DE PAGO","children":[{"content":"Artículo 580. Casos en que no procede el requerimiento de pago","children":[{"content":"Cuando el título ejecutivo consista en resoluciones del Letrado de la Administración de Justicia, resoluciones judiciales o arbitrales, o que aprueben transacciones o convenios alcanzados dentro del proceso, o acuerdos de mediación, que obliguen a entregar cantidades determinadas de dinero, no será necesario requerir de pago al ejecutado para proceder al embargo de sus bienes.","children":[],"payload":{"lines":"5,6"}},{"content":"Esto se debe a que estos tipos de títulos ejecutivos ya contienen una orden expresa de entrega de una cantidad de dinero determinada, por lo que no es necesario un requerimiento de pago previo al embargo.","children":[],"payload":{"lines":"6,7"}},{"content":"La ley considera que, al tratarse de resoluciones o acuerdos judiciales o de mediación, el ejecutado ya ha sido debidamente notificado y tiene la obligación de cumplir con lo ordenado, sin necesidad de un requerimiento adicional.","children":[],"payload":{"lines":"7,9"}}],"payload":{"lines":"3,4"}},{"content":"Artículo 581. Casos en que procede el requerimiento de pago","children":[{"content":"Cuando la ejecución para la entrega de cantidades determinadas de dinero no se funde en resoluciones procesales o arbitrales:","children":[{"content":"Despachada la ejecución, se requerirá de pago al ejecutado por la cantidad reclamada en concepto de principal e intereses devengados, en su caso, hasta la fecha de la demanda.","children":[],"payload":{"lines":"12,13"}},{"content":"Si el ejecutado no paga en el acto, el letrado o letrada de la Administración de Justicia procederá al embargo de sus bienes en la medida suficiente para responder de la cantidad por la que se haya despachado ejecución y las costas de ésta.","children":[],"payload":{"lines":"13,14"}}],"payload":{"lines":"11,14"}},{"content":"No se practicará el requerimiento de pago establecido en el apartado anterior cuando a la demanda ejecutiva se haya acompañado acta notarial que acredite haberse requerido de pago al ejecutado con al menos diez días de antelación.","children":[{"content":"En este caso, al haberse realizado ya un requerimiento previo de pago, no es necesario un nuevo requerimiento al despachar la ejecución.","children":[],"payload":{"lines":"15,17"}}],"payload":{"lines":"14,17"}}],"payload":{"lines":"9,10"}},{"content":"Artículo 582. Lugar del requerimiento de pago","children":[{"content":"El requerimiento de pago se efectuará en el domicilio que figure en el título ejecutivo.","children":[],"payload":{"lines":"19,20"}},{"content":"Podrá también hacerse a través de la sede judicial electrónica en el caso de que el ejecutado esté obligado a intervenir con la Administración de Justicia a través de medios electrónicos.","children":[],"payload":{"lines":"20,21"}},{"content":"A petición del ejecutante, el requerimiento podrá hacerse, además, en cualquier lugar en el que, incluso de forma accidental, el ejecutado pudiera ser hallado.","children":[],"payload":{"lines":"21,22"}},{"content":"Si no se encontrase el ejecutado en el domicilio que conste en el título ejecutivo, podrá practicarse el embargo si el ejecutante lo solicita, sin perjuicio de intentar de nuevo el requerimiento con arreglo a lo dispuesto en la ley para los actos de comunicación mediante entrega de la resolución o de cédula y, en su caso, para la comunicación edictal.","children":[],"payload":{"lines":"22,23"}},{"content":"Esta flexibilidad en el lugar del requerimiento busca facilitar la notificación al ejecutado y evitar retrasos en el proceso de ejecución.","children":[],"payload":{"lines":"23,25"}}],"payload":{"lines":"17,18"}},{"content":"Artículo 583. Pago por el ejecutado. Costas","children":[{"content":"Si el ejecutado pagase en el acto del requerimiento o antes del despacho de la ejecución:","children":[{"content":"El Letrado de la Administración de Justicia pondrá la suma de dinero correspondiente a disposición del ejecutante.","children":[],"payload":{"lines":"28,29"}},{"content":"Entregará al ejecutado justificante del pago realizado.","children":[],"payload":{"lines":"29,30"}}],"payload":{"lines":"27,30"}},{"content":"Aunque pague el deudor en el acto del requerimiento, serán de su cargo todas las costas causadas, salvo que justifique que, por causa que no le sea imputable, no pudo efectuar el pago antes de que el acreedor promoviera la ejecución.","children":[{"content":"Esta regla busca evitar que el ejecutado se beneficie de la dilación en el pago, haciéndole responsable de las costas generadas.","children":[],"payload":{"lines":"31,32"}}],"payload":{"lines":"30,32"}},{"content":"Satisfechos intereses y costas, de haberse devengado, el Letrado de la Administración de Justicia dictará decreto dando por terminada la ejecución.","children":[{"content":"Una vez que el ejecutado ha pagado la cantidad adeudada, junto con los intereses y costas, se da por concluido el proceso de ejecución.","children":[],"payload":{"lines":"33,34"}}],"payload":{"lines":"32,34"}}],"payload":{"lines":"25,26"}}],"payload":{"lines":"1,2"}},{"maxWidth":300,"embedAssets":true,"initialExpandLevel":1,"htmlParser":{"selector":"h1,h2,h3,h4,h5,ul,ol,li,table,pre"}})</script>
+</script><script>(()=>{setTimeout(()=>{const{markmap:q,mm:v}=window,j=new q.Toolbar;j.attach(v);const we=j.render();we.setAttribute("style","position:absolute;bottom:20px;right:20px"),document.body.append(we)})})()</script><script>((f,d,h,u)=>{const g=f();window.mm=g.Markmap.create("svg#mindmap",(d||g.deriveOptions)(u),h)})(()=>window.markmap,null,{"content":"<strong>DEL REQUERIMIENTO DE PAGO</strong>","children":[{"content":"<strong>Artículo 580. Casos en que no procede el requerimiento de pago</strong>","children":[{"content":"\n<p data-lines=\"6,7\"><strong>Títulos ejecutivos específicos</strong></p>","children":[{"content":"Cuando el título ejecutivo consista en resoluciones del Letrado de la Administración de Justicia, resoluciones judiciales o arbitrales, o que aprueben transacciones o convenios alcanzados dentro del proceso, o acuerdos de mediación que obliguen a entregar cantidades determinadas de dinero.","children":[],"payload":{"lines":"8,9"}}],"payload":{"lines":"6,9"}},{"content":"\n<p data-lines=\"9,10\"><strong>No requerimiento de pago</strong></p>","children":[{"content":"No será necesario requerir de pago al ejecutado para proceder al embargo de sus bienes.","children":[],"payload":{"lines":"11,13"}}],"payload":{"lines":"9,13"}}],"payload":{"lines":"4,5"}},{"content":"<strong>Artículo 581. Casos en que procede el requerimiento de pago</strong>","children":[{"content":"\n<p data-lines=\"14,15\"><strong>Ejecución No Basada en Resoluciones Procesales o Arbitrales</strong></p>","children":[{"content":"Cuando la ejecución para la entrega de cantidades determinadas de dinero no se funde en resoluciones procesales o arbitrales, despachada la ejecución, se requerirá de pago al ejecutado por la cantidad reclamada en concepto de principal e intereses devengados hasta la fecha de la demanda.","children":[],"payload":{"lines":"15,16"}},{"content":"Si no pagase en el acto, el letrado o letrada de la Administración de Justicia procederá al embargo de sus bienes en la medida suficiente para responder de la cantidad por la que se haya despachado ejecución y las costas de ésta.","children":[],"payload":{"lines":"16,19"}}],"payload":{"lines":"14,19"}},{"content":"\n<p data-lines=\"19,20\"><strong>Acta notarial previa</strong></p>","children":[{"content":"No se practicará el requerimiento establecido en el apartado anterior cuando a la demanda ejecutiva se haya acompañado acta notarial que acredite haberse requerido de pago al ejecutado con al menos diez días de antelación.","children":[],"payload":{"lines":"21,23"}}],"payload":{"lines":"19,23"}}],"payload":{"lines":"13,14"}},{"content":"<strong>Artículo 582. Lugar del requerimiento de pago</strong>","children":[{"content":"\n<p data-lines=\"24,25\"><strong>Domicilio en el Título Ejecutivo</strong></p>","children":[{"content":"El requerimiento de pago se efectuará en el domicilio que figure en el título ejecutivo.","children":[],"payload":{"lines":"25,28"}}],"payload":{"lines":"24,28"}},{"content":"\n<p data-lines=\"28,29\"><strong>Sede judicial electrónica</strong></p>","children":[{"content":"Podrá también hacerse través de la sede judicial electrónica en el caso de que el ejecutado esté obligado a intervenir con la Administración de Justicia a través de medios electrónicos.","children":[],"payload":{"lines":"30,31"}}],"payload":{"lines":"28,31"}},{"content":"\n<p data-lines=\"31,32\"><strong>Lugar accidental</strong></p>","children":[{"content":"A petición del ejecutante, el requerimiento podrá hacerse, además, en cualquier lugar en el que, incluso de forma accidental, el ejecutado pudiera ser hallado.","children":[],"payload":{"lines":"33,34"}}],"payload":{"lines":"31,34"}},{"content":"\n<p data-lines=\"34,35\"><strong>No encontrado en domicilio</strong></p>","children":[{"content":"Si no se encontrase el ejecutado en el domicilio que conste en el título ejecutivo, podrá practicarse el embargo si el ejecutante lo solicita, sin perjuicio de intentar de nuevo el requerimiento con arreglo a lo dispuesto en esta Ley para los actos de comunicación mediante entrega de la resolución o de cédula y, en su caso, para la comunicación edictal.","children":[],"payload":{"lines":"36,38"}}],"payload":{"lines":"34,38"}}],"payload":{"lines":"23,24"}},{"content":"<strong>Artículo 583. Pago por el ejecutado. Costas</strong>","children":[{"content":"\n<p data-lines=\"39,40\"><strong>Pago Inmediato</strong></p>","children":[{"content":"\n<p data-lines=\"41,42\">Si el ejecutado pagase en el acto del requerimiento o antes del despacho de la ejecución, el Letrado de la Administración de Justicia pondrá la suma de dinero correspondiente a disposición del ejecutante y entregará al ejecutado justificante del pago realizado.</p>","children":[{"content":"Aunque pague en el acto del requerimiento, serán de su cargo todas las costas causadas, salvo que justifique que, por causa que no le sea imputable, no pudo efectuar el pago antes de que el acreedor promoviera la ejecución.","children":[],"payload":{"lines":"43,45"}}],"payload":{"lines":"41,45"}}],"payload":{"lines":"39,45"}},{"content":"\n<p data-lines=\"45,46\"><strong>Terminación de la Ejecución</strong></p>","children":[{"content":"Satisfechos intereses y costas, de haberse devengado, el Letrado de la Administración de Justicia dictará decreto dando por terminada la ejecución.","children":[],"payload":{"lines":"47,48"}}],"payload":{"lines":"45,48"}}],"payload":{"lines":"38,39"}}],"payload":{"lines":"2,3"}},{"maxWidth":300,"embedAssets":true,"initialExpandLevel":1,"htmlParser":{"selector":"h1,h2,h3,h4,h5,h6,ul,ol,li,table,pre"}})</script>
 </body>
 </html>
